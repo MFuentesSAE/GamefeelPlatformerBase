@@ -1,7 +1,10 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
+using UnityEngine.UIElements.Experimental;
 
 namespace Platformer
 {
@@ -9,32 +12,60 @@ namespace Platformer
     {
         public int coinsCounter = 0;
 
+        [Range(0, 10)]
+        public int coinsToCollect = 1;
+
         public GameObject playerGameObject;
         private PlayerController player;
         public GameObject deathPlayerPrefab;
-        public Text coinText;
+        public TextMeshProUGUI coinText;
 
-        void Start()
-        {
-            player = GameObject.Find("Player").GetComponent<PlayerController>();
-        }
+        public static GameManager instance;
 
-        void Update()
+		private void Awake()
+		{
+            instance = this;
+		}
+
+		void Start()
         {
-            coinText.text = coinsCounter.ToString();
-            if(player.deathState == true)
+            player = playerGameObject.GetComponent<PlayerController>();
+            coinsCounter = 0;
+			coinText.text = coinsCounter.ToString();
+		}
+
+        public void AddCoins(int amount)
+        {
+            coinsCounter += amount;
+			coinText.text = coinsCounter.ToString();
+            if(coinsCounter >= coinsToCollect)
             {
-                playerGameObject.SetActive(false);
-                GameObject deathPlayer = (GameObject)Instantiate(deathPlayerPrefab, playerGameObject.transform.position, playerGameObject.transform.rotation);
-                deathPlayer.transform.localScale = new Vector3(playerGameObject.transform.localScale.x, playerGameObject.transform.localScale.y, playerGameObject.transform.localScale.z);
-                player.deathState = false;
-                Invoke("ReloadLevel", 3);
+                GameWon();
             }
+		}
+
+        public void GameOver()
+        {
+			playerGameObject.SetActive(false);
+			GameObject deathPlayer = Instantiate(deathPlayerPrefab, playerGameObject.transform.position, playerGameObject.transform.rotation);
+			deathPlayer.transform.localScale = new Vector3(playerGameObject.transform.localScale.x, playerGameObject.transform.localScale.y, playerGameObject.transform.localScale.z);
+            EndGame();
+		}
+
+        public void GameWon()
+        {
+			StartCoroutine(LoadSceneRoutine(2, 0));
+		}
+
+        private void EndGame()
+        {
+            StartCoroutine(LoadSceneRoutine(2, 1));
         }
 
-        private void ReloadLevel()
+       IEnumerator LoadSceneRoutine(float waitTime, int sceneToLoad)
         {
-            Application.LoadLevel(Application.loadedLevel);
+            yield return new WaitForSeconds(waitTime);
+            SceneManager.LoadScene(sceneToLoad);
         }
     }
 }
