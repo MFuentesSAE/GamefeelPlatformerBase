@@ -16,6 +16,7 @@ namespace Platformer
 
         private bool grouding, hitWall;
         private Vector2 currentDirection = Vector2.right;
+        private bool blockMovement;
         
         void Start()
         {
@@ -24,6 +25,11 @@ namespace Platformer
 
         void Update()
         {
+            if (blockMovement)
+            {
+                return;
+            }
+
             rigidbody.linearVelocity = new Vector2(moveSpeed, rigidbody.linearVelocity.y);
         }
 
@@ -47,12 +53,12 @@ namespace Platformer
 			RaycastHit2D hit = Physics2D.Raycast(ray.origin, ray.direction, rayLenght, ground);
 
             return hit;
-            //if(hit == false)
-            //{
-            //    Flip();
-            //}
-
         }
+
+        public void BlockMovement(bool vaue)
+        {
+            blockMovement = vaue;
+		}
         
         private void Flip()
         {

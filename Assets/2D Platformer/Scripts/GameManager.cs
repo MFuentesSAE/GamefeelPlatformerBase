@@ -1,10 +1,8 @@
 using System.Collections;
-using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+using UnityEngine.Events;
 using UnityEngine.SceneManagement;
-using UnityEngine.UI;
-using UnityEngine.UIElements.Experimental;
 
 namespace Platformer
 {
@@ -19,6 +17,7 @@ namespace Platformer
         private PlayerController player;
         public GameObject deathPlayerPrefab;
         public TextMeshProUGUI coinText;
+        public UnityEvent onGameWinEvents;
 
         public static GameManager instance;
 
@@ -54,6 +53,7 @@ namespace Platformer
 
         public void GameWon()
         {
+            onGameWinEvents?.Invoke();
 			StartCoroutine(LoadSceneRoutine(2, 0));
 		}
 
