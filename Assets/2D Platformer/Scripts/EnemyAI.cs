@@ -35,6 +35,11 @@ namespace Platformer
 
         void FixedUpdate()
         {
+			if (blockMovement)
+			{
+				return;
+			}
+
 			grouding = GroundingRaycast(groundRayOrigin.position, Vector2.down, Color.green);
             hitWall = GroundingRaycast(transform.position, currentDirection, Color.red);
 
