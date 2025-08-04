@@ -9,7 +9,7 @@ public class VirtualCameraManager : MonoBehaviour
 
     public bool transitionOnStart;
     public int defaultStartCameraTransition;
-    public const float DEFAULT_TRANSITION_TIME = 3;
+    public const float DEFAULT_TRANSITION_TIME = 2;
 
     void Start()
     {

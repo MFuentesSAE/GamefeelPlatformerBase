@@ -28,7 +28,7 @@ MonoBehaviour:
     To: CinemachineCamera_FocusedRight
     Blend:
       Style: 4
-      Time: 0.25
+      Time: 0.1
       CustomCurve:
         serializedVersion: 2
         m_Curve: []

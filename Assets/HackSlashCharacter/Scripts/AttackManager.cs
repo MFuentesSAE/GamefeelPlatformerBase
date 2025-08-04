@@ -4,7 +4,7 @@ using System;
 
 public class AttackManager : MonoBehaviour
 {
-    public PlayerController playerController;
+    public PlayerController3D playerController;
     public AnimatorController animatorController;
     public float force, tweenTime;
     private Tween impulseTween;

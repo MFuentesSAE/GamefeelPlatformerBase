@@ -1,7 +1,7 @@
 using UnityEngine;
 
 
-public class PlayerController : MonoBehaviour
+public class PlayerController3D : MonoBehaviour
 {
 	public Vector3 movementVector;
 	public float moveSpeed, rotationSpeed;

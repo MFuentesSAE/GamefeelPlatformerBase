@@ -5,7 +5,7 @@ public class EnemyController : MonoBehaviour
 {
     public EnemyState enemyState;
     public NavMeshAgent agent;
-    public PlayerController player;
+    public PlayerController3D player;
     public SphereCollider visionTrigger;
 
     private float currentSpeed;

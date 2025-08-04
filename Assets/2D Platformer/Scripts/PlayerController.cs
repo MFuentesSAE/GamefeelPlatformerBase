@@ -10,13 +10,20 @@ namespace Platformer
 		public float jumpForce;
 		public bool blockInput;
 		private float moveInput;
+
+		[SerializeField]
 		private int jumpCounter = 0;
 
 		private bool facingRight = false;
-		[HideInInspector]
 		//public bool deathState = false;
 
+		[SerializeField]
+		private LayerMask groundLayerMask;
+
+		//[SerializeField]
 		private bool isGrounded;
+		public float groundCheckRadius;
+
 		public Transform groundCheck;
 
 		private Rigidbody2D rigidbody;
@@ -67,9 +74,9 @@ namespace Platformer
 			if (Input.GetKeyDown(KeyCode.Space) && jumpCounter < MAX_JUMPS - 1)
 			{
 				jumpCounter = Mathf.Clamp(jumpCounter, 0, MAX_JUMPS - 1);
+				jumpCounter++;
 				rigidbody.linearVelocity = Vector2.zero;
 				rigidbody.AddForce(transform.up * jumpForce, ForceMode2D.Impulse);
-				jumpCounter++;
 			}
 			if (!isGrounded) animator.SetInteger("playerState", 2); // Turn on jump animation
 
@@ -93,7 +100,7 @@ namespace Platformer
 
 		private void CheckGround()
 		{
-			Collider2D[] colliders = Physics2D.OverlapCircleAll(groundCheck.transform.position, 0.2f);
+			Collider2D[] colliders = Physics2D.OverlapCircleAll(groundCheck.transform.position, groundCheckRadius, groundLayerMask);
 			isGrounded = colliders.Length > 1;
 
 			if (isGrounded)
@@ -128,6 +135,12 @@ namespace Platformer
 				gameManager?.AddCoins(1);
 				other.gameObject.SetActive(false);
 			}
+		}
+
+		private void OnDrawGizmos()
+		{
+			Gizmos.color = Color.red;
+			Gizmos.DrawWireSphere(groundCheck.transform.position, groundCheckRadius);
 		}
 	}
 }
