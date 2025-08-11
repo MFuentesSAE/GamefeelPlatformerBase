@@ -38,7 +38,8 @@ public class Flicker : MonoBehaviour
 
         flickerTween = spriteRenderer.DOColor(targetColor, tweenTime).SetLoops(loops, loopType)
             .OnStart(Inmunity)
-            .OnComplete(EndInmunity);
+            .OnComplete(EndInmunity)
+            .SetUpdate(true);
     }
 
     private void Inmunity()

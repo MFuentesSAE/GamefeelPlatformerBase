@@ -7,15 +7,25 @@ public class FrezeeFrameFX : MonoBehaviour
     public float freezeTimeValue;
     private Coroutine freezeFrameRoutine;
 
-    public void FreezeFrame()
-    {
-        if(freezeFrameRoutine != null)
-        {
-            StopCoroutine(freezeFrameRoutine);
-        }
+	private void OnDisable()
+	{
+        StopFreezeCouroutine();
+		Time.timeScale = 1;
+	}
 
-        freezeFrameRoutine = StartCoroutine(FreezeFrameRoutine());
+	public void FreezeFrame()
+    {
+        StopFreezeCouroutine();
+		freezeFrameRoutine = StartCoroutine(FreezeFrameRoutine());
     }
+
+    private void StopFreezeCouroutine()
+    {
+		if (freezeFrameRoutine != null)
+		{
+			StopCoroutine(freezeFrameRoutine);
+		}
+	}
 
     IEnumerator FreezeFrameRoutine()
     {

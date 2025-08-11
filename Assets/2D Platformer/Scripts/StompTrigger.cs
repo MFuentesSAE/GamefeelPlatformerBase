@@ -14,6 +14,7 @@ public class StompTrigger : MonoBehaviour
 		if(hp != null)
 		{
 			hp.RemoveHp(1);
+			onStompEvent?.Invoke();
 
 			if (playerRigidbody != null)
 			{
@@ -21,7 +22,6 @@ public class StompTrigger : MonoBehaviour
 				playerRigidbody.AddForce(Vector2.up * BOUNCE_FORCE);
 			}
 
-			onStompEvent?.Invoke();
         }
 	}
 }

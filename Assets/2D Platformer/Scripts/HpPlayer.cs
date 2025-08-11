@@ -6,6 +6,9 @@ public class HpPlayer : HpBase
 	[SerializeField, Space(10)]
 	private UnityEvent<int> onStartEvent, onModifyHpEvent;
 
+	[SerializeField, Space(10)]
+	private UnityEvent onDieEvent;
+
 	protected override void Start()
 	{
 		base.Start();
@@ -19,6 +22,7 @@ public class HpPlayer : HpBase
 		if(currentHp <= 0)
 		{
 			gameManager?.GameOver();
+			onDieEvent?.Invoke();
 		}
 	}
 }

@@ -7,7 +7,7 @@ public class CameraShaker : MonoBehaviour
     public int shakeAmplitude;
     public int shakeFrequency;
     public CinemachineBasicMultiChannelPerlin perlin;
-
+    private Coroutine shakeRoutine;
 
     void Start()
     {
@@ -24,14 +24,25 @@ public class CameraShaker : MonoBehaviour
     {
         perlin.AmplitudeGain = shakeAmplitude;
         perlin.FrequencyGain = shakeFrequency;
-        StartCoroutine(StopShakeRoutine(shakeTime));
+
+        if(shakeRoutine != null)
+        {
+            StopCoroutine(shakeRoutine);
+        }
+
+		shakeRoutine = StartCoroutine(StopShakeRoutine(shakeTime));
     }
+
+    public void StopShake()
+    {
+		perlin.AmplitudeGain = 0;
+		perlin.FrequencyGain = 0;
+	}
 
     IEnumerator StopShakeRoutine(float shakeTime)
     {
         yield return new WaitForSeconds(shakeTime);
-        perlin.AmplitudeGain = 0;
-        perlin.FrequencyGain = 0;
-    }
+        StopShake();
+	}
 
 }
