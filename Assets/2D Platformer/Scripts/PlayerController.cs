@@ -29,6 +29,7 @@ namespace Platformer
 		private Rigidbody2D rigidbody;
 		private Animator animator;
 		private GameManager gameManager;
+		public SoundManager playerSoundManager;
 
 		[SerializeField]
 		private HpPlayer hp;
@@ -73,6 +74,7 @@ namespace Platformer
 			}
 			if (Input.GetKeyDown(KeyCode.Space) && jumpCounter < MAX_JUMPS - 1)
 			{
+				playerSoundManager?.PlayRandomPitch("Jump");
 				jumpCounter = Mathf.Clamp(jumpCounter, 0, MAX_JUMPS - 1);
 				jumpCounter++;
 				rigidbody.linearVelocity = Vector2.zero;
@@ -115,15 +117,16 @@ namespace Platformer
 			{
 				case "Enemy":
 					hp.RemoveHp(1);
-
-					Vector2 direction = facingRight ? Vector2.left : Vector2.right;
+                    playerSoundManager?.PlayRandomPitch("Hit");
+                    Vector2 direction = facingRight ? Vector2.left : Vector2.right;
 					direction += Vector2.up;
 					rigidbody.AddForce(direction * KNOCKBACK_FORCE);
 					break;
 
 				case "Hazard":
 					hp.RemoveHp(hp.maxHp);
-					rigidbody.AddForce(Vector3.up * KNOCKBACK_FORCE);
+                    playerSoundManager?.PlayRandomPitch("Hit");
+                    rigidbody.AddForce(Vector3.up * KNOCKBACK_FORCE);
 					break;
 			}
 		}
@@ -132,7 +135,8 @@ namespace Platformer
 		{
 			if (other.gameObject.tag == "Coin")
 			{
-				gameManager?.AddCoins(1);
+                playerSoundManager?.PlayRandomPitch("Coin");
+                gameManager?.AddCoins(1);
 				other.gameObject.SetActive(false);
 			}
 		}
