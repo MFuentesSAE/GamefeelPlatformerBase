@@ -1,11 +1,13 @@
 using Platformer;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class HpBase : MonoBehaviour
 {
     public int maxHp;
     protected int currentHp;
     protected GameManager gameManager;
+    public UnityEvent onDeathEvent;
 
     protected virtual void Start()
     {

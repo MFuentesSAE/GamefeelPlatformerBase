@@ -17,7 +17,6 @@ namespace Platformer
 
         public GameObject playerGameObject;
         private PlayerController player;
-        public GameObject deathPlayerPrefab;
         public TextMeshProUGUI coinText;
 
         public static GameManager instance;
@@ -46,9 +45,6 @@ namespace Platformer
 
         public void GameOver()
         {
-			playerGameObject.SetActive(false);
-			GameObject deathPlayer = Instantiate(deathPlayerPrefab, playerGameObject.transform.position, playerGameObject.transform.rotation);
-			deathPlayer.transform.localScale = new Vector3(playerGameObject.transform.localScale.x, playerGameObject.transform.localScale.y, playerGameObject.transform.localScale.z);
             EndGame();
 		}
 

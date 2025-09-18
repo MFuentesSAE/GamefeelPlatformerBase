@@ -9,15 +9,14 @@ namespace Platformer
 		public float movingSpeed;
 		public float jumpForce;
 		public bool blockInput;
+
 		private float moveInput;
 		private int jumpCounter = 0;
 
 		private bool facingRight = false;
-		[HideInInspector]
-		//public bool deathState = false;
-
 		private bool isGrounded;
 		public Transform groundCheck;
+		public LayerMask groundMask;
 
 		private Rigidbody2D rigidbody;
 		private Animator animator;
@@ -53,34 +52,52 @@ namespace Platformer
 				return;
 			}
 
-			if (Input.GetButton("Horizontal"))
+			moveInput = Input.GetAxisRaw("Horizontal");
+			Vector3 direction = transform.right * moveInput;
+			transform.position = Vector3.MoveTowards(transform.position, transform.position + direction, movingSpeed * Time.deltaTime);
+
+			if (isGrounded)
 			{
-				moveInput = Input.GetAxis("Horizontal");
-				Vector3 direction = transform.right * moveInput;
-				transform.position = Vector3.MoveTowards(transform.position, transform.position + direction, movingSpeed * Time.deltaTime);
-				animator.SetInteger("playerState", 1); // Turn on run animation
+				bool moving = Mathf.Abs(moveInput) > 0 ? true : false;
+				animator?.SetBool("Moving", moving);
+				animator?.SetBool("Jump", false);
+
 			}
-			else
+
+			if (Input.GetKeyDown(KeyCode.Space))
 			{
-				if (isGrounded) animator.SetInteger("playerState", 0); // Turn on idle animation
-			}
-			if (Input.GetKeyDown(KeyCode.Space) && jumpCounter < MAX_JUMPS - 1)
-			{
+				jumpCounter++;
+
+				if (jumpCounter >= MAX_JUMPS)
+				{
+					return;
+				}
+
 				jumpCounter = Mathf.Clamp(jumpCounter, 0, MAX_JUMPS - 1);
 				rigidbody.linearVelocity = Vector2.zero;
 				rigidbody.AddForce(transform.up * jumpForce, ForceMode2D.Impulse);
-				jumpCounter++;
+				animator?.SetBool("Jump", true);
 			}
-			if (!isGrounded) animator.SetInteger("playerState", 2); // Turn on jump animation
 
-			if (facingRight == false && moveInput > 0)
+			if (!facingRight && moveInput > 0)
 			{
 				Flip();
 			}
-			else if (facingRight == true && moveInput < 0)
+			else if (facingRight && moveInput < 0)
 			{
 				Flip();
 			}
+		}
+
+		public void BlockInput(bool value)
+		{
+			blockInput = value;
+		}
+
+		public void Death()
+		{
+			BlockInput(true);
+			animator?.SetBool("Death", true);
 		}
 
 		private void Flip()
@@ -93,7 +110,7 @@ namespace Platformer
 
 		private void CheckGround()
 		{
-			Collider2D[] colliders = Physics2D.OverlapCircleAll(groundCheck.transform.position, 0.2f);
+			Collider2D[] colliders = Physics2D.OverlapCircleAll(groundCheck.transform.position, 0.2f, groundMask);
 			isGrounded = colliders.Length > 1;
 
 			if (isGrounded)
