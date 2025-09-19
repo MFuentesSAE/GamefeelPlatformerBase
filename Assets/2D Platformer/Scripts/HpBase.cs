@@ -20,4 +20,9 @@ public class HpBase : MonoBehaviour
         currentHp -= amount;
         currentHp = Mathf.Clamp(currentHp, 0, maxHp);
     }
+
+    public bool IsAlive()
+    {
+        return currentHp > 0;   
+    }
 }

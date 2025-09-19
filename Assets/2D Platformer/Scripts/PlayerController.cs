@@ -121,6 +121,11 @@ namespace Platformer
 
 		private void OnCollisionEnter2D(Collision2D other)
 		{
+			if (hp == null || !hp.IsAlive())
+			{
+				return;
+			}
+
 			switch (other.gameObject.tag)
 			{
 				case "Enemy":
