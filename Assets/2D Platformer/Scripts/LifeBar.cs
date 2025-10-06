@@ -8,8 +8,8 @@ public class LifeBar : MonoBehaviour
 	public LayoutGroup anchor;
 	public Image imageHeartPrefab;
 
-	private Color normalColor = Color.red;
-	private Color damageColor = Color.black;
+	private Color normalColor = Color.white;
+	private Color damageColor = Color.grey;
 
 	private Vector2 imageSize = new Vector2(128, 128);
 	private List<Image> lifeImageList = new List<Image>();

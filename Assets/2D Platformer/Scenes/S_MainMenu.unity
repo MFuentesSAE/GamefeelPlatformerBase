@@ -178,8 +178,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: Super Platformer
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 06e1b204699b82845a48c2927d35f9ed, type: 2}
-  m_sharedMaterial: {fileID: 6589648038674400605, guid: 06e1b204699b82845a48c2927d35f9ed, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 4695d34dae4a7a949b84650f2df745d5, type: 2}
+  m_sharedMaterial: {fileID: -7089849599055313174, guid: 4695d34dae4a7a949b84650f2df745d5, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -203,7 +203,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 155.95
+  m_fontSize: 141.2
   m_fontSizeBase: 36
   m_fontWeight: 400
   m_enableAutoSizing: 1
@@ -898,15 +898,15 @@ MonoBehaviour:
       m_Calls: []
   m_text: Start Game
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 06e1b204699b82845a48c2927d35f9ed, type: 2}
-  m_sharedMaterial: {fileID: 6589648038674400605, guid: 06e1b204699b82845a48c2927d35f9ed, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 4695d34dae4a7a949b84650f2df745d5, type: 2}
+  m_sharedMaterial: {fileID: -7089849599055313174, guid: 4695d34dae4a7a949b84650f2df745d5, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 4281479730
-  m_fontColor: {r: 0.19607843, g: 0.19607843, b: 0.19607843, a: 1}
+    rgba: 4294967295
+  m_fontColor: {r: 1, g: 1, b: 1, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
   m_fontColorGradient:
