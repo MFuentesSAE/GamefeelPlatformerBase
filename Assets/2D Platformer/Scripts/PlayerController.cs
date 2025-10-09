@@ -14,6 +14,8 @@ namespace Platformer
 		private int jumpCounter = 0;
 
 		private bool facingRight = false;
+
+		[SerializeField]
 		private bool isGrounded;
 		public Transform groundCheck;
 		public LayerMask groundMask;
@@ -26,6 +28,7 @@ namespace Platformer
 		private HpPlayer hp;
 		private const float KNOCKBACK_FORCE = 150;
 		private const int MAX_JUMPS = 2;
+		public float groundedRadius = 1;
 
 		void Start()
 		{
@@ -42,11 +45,11 @@ namespace Platformer
 
 		private void FixedUpdate()
 		{
-			CheckGround();
 		}
 
 		void Update()
 		{
+			CheckGround();
 			if (blockInput)
 			{
 				return;
@@ -110,8 +113,8 @@ namespace Platformer
 
 		private void CheckGround()
 		{
-			Collider2D[] colliders = Physics2D.OverlapCircleAll(groundCheck.transform.position, 0.2f, groundMask);
-			isGrounded = colliders.Length > 1;
+			Collider2D[] colliders = Physics2D.OverlapCircleAll(groundCheck.transform.position, groundedRadius, groundMask);
+			isGrounded = colliders.Length > 0;
 
 			if (isGrounded)
 			{
@@ -150,6 +153,12 @@ namespace Platformer
 				gameManager?.AddCoins(1);
 				other.gameObject.SetActive(false);
 			}
+		}
+
+		private void OnDrawGizmos()
+		{
+			Gizmos.color = Color.yellow;
+			Gizmos.DrawWireSphere(groundCheck.transform.position, groundedRadius);
 		}
 	}
 }
