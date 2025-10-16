@@ -8657,7 +8657,7 @@ PrefabInstance:
     - target: {fileID: 6422564092414130948, guid: a3dc7dd79a2fbc341a3fc828503f1ca9, type: 3}
       propertyPath: onModifyHpEvent.m_PersistentCalls.m_Calls.Array.data[1].m_Target
       value: 
-      objectReference: {fileID: 6952628394822414802}
+      objectReference: {fileID: 0}
     - target: {fileID: 6422564092414130948, guid: a3dc7dd79a2fbc341a3fc828503f1ca9, type: 3}
       propertyPath: onModifyHpEvent.m_PersistentCalls.m_Calls.Array.data[1].m_CallState
       value: 2
@@ -8736,10 +8736,7 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 6952628394585513801, guid: a3dc7dd79a2fbc341a3fc828503f1ca9, type: 3}
       insertIndex: -1
       addedObject: {fileID: 838705586}
-    m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 6952628394585513906, guid: a3dc7dd79a2fbc341a3fc828503f1ca9, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 6952628394822414802}
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a3dc7dd79a2fbc341a3fc828503f1ca9, type: 3}
 --- !u!114 &6952628394822414794 stripped
 MonoBehaviour:
@@ -8762,29 +8759,6 @@ Rigidbody2D:
   m_CorrespondingSourceObject: {fileID: 6952628394585513908, guid: a3dc7dd79a2fbc341a3fc828503f1ca9, type: 3}
   m_PrefabInstance: {fileID: 6952628394822414793}
   m_PrefabAsset: {fileID: 0}
---- !u!212 &6952628394822414801 stripped
-SpriteRenderer:
-  m_CorrespondingSourceObject: {fileID: 6952628394585513910, guid: a3dc7dd79a2fbc341a3fc828503f1ca9, type: 3}
-  m_PrefabInstance: {fileID: 6952628394822414793}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &6952628394822414802
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1916759675}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: bc77ba38af4a1f54984a16cb39a07e8b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  inmuneLayer: 8
-  loops: 4
-  tweenTime: 0.25
-  targetColor: {r: 0, g: 0, b: 0, a: 0.5019608}
-  spriteRenderer: {fileID: 6952628394822414801}
-  debugKey: 9
 --- !u!1001 &7873588928309003796
 PrefabInstance:
   m_ObjectHideFlags: 0
