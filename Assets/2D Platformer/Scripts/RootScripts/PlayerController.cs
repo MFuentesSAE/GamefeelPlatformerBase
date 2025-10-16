@@ -16,7 +16,7 @@ namespace Platformer
 		private bool facingRight = false;
 
 		[SerializeField]
-		private bool isGrounded;
+		public bool isGrounded;
 		public Transform groundCheck;
 		public LayerMask groundMask;
 
