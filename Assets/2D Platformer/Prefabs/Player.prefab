@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 6952628394585513908}
   - component: {fileID: 6952628394585513800}
   - component: {fileID: 6422564092414130948}
-  - component: {fileID: 7590879342174036431}
+  - component: {fileID: 1984978516465038712}
   m_Layer: 3
   m_Name: Player
   m_TagString: Player
@@ -154,12 +154,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   movingSpeed: 6
   jumpForce: 7
-  blockInput: 0
+  blockInput: 1
+  isGrounded: 0
   groundCheck: {fileID: 6952628394686255622}
   groundMask:
     serializedVersion: 2
-    m_Bits: 119
+    m_Bits: 192
   hp: {fileID: 6422564092414130948}
+  groundedRadius: 0.35
 --- !u!50 &6952628394585513908
 Rigidbody2D:
   serializedVersion: 5
@@ -267,11 +269,23 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 1984978516465038712}
+        m_TargetAssemblyTypeName: Flicker, Assembly-CSharp
+        m_MethodName: FlickerEffect
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   playerController: {fileID: 6952628394585513909}
   onDieEvent:
     m_PersistentCalls:
       m_Calls: []
---- !u!114 &7590879342174036431
+--- !u!114 &1984978516465038712
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -280,10 +294,18 @@ MonoBehaviour:
   m_GameObject: {fileID: 6952628394585513906}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c06dd2d2cd515074f8b44724ce5de96b, type: 3}
+  m_Script: {fileID: 11500000, guid: f18b8b823d5f55947a8af63b8b5e00d1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  animator: {fileID: 6952628394585513800}
+  spriteRenderer: {fileID: 6952628394585513910}
+  targetColor: {r: 1, g: 0, b: 0, a: 0.6039216}
+  tweenTime: 0.4
+  loops: 4
+  inmuneLayer: 8
+  debugKey: 9
+  onTweenEvent:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!1 &6952628394686255623
 GameObject:
   m_ObjectHideFlags: 0
