@@ -39,11 +39,11 @@ AnimatorStateMachine:
     m_State: {fileID: -7690241265808927352}
     m_Position: {x: 260, y: 120, z: 0}
   - serializedVersion: 1
-    m_State: {fileID: -3179059718551962870}
+    m_State: {fileID: -1350754652328435164}
     m_Position: {x: 260, y: 60, z: 0}
   m_ChildStateMachines: []
   m_AnyStateTransitions:
-  - {fileID: 8329263430401676137}
+  - {fileID: 3787952551084089007}
   m_EntryTransitions: []
   m_StateMachineTransitions: {}
   m_StateMachineBehaviours: []
@@ -52,14 +52,14 @@ AnimatorStateMachine:
   m_ExitPosition: {x: 50, y: 30, z: 0}
   m_ParentStateMachinePosition: {x: 800, y: 20, z: 0}
   m_DefaultState: {fileID: -7690241265808927352}
---- !u!1102 &-3179059718551962870
+--- !u!1102 &-1350754652328435164
 AnimatorState:
   serializedVersion: 6
   m_ObjectHideFlags: 1
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: New State
+  m_Name: Mushromm_death
   m_Speed: 1
   m_CycleOffset: 0
   m_Transitions: []
@@ -72,7 +72,7 @@ AnimatorState:
   m_MirrorParameterActive: 0
   m_CycleOffsetParameterActive: 0
   m_TimeParameterActive: 0
-  m_Motion: {fileID: 7400000, guid: f2d90dacb3fb0b449a5de15ac5e70e56, type: 2}
+  m_Motion: {fileID: 7400000, guid: 4139d936f3b360649897eb985d9bf088, type: 2}
   m_Tag: 
   m_SpeedParameter: 
   m_MirrorParameter: 
@@ -106,7 +106,7 @@ AnimatorController:
     m_IKPass: 0
     m_SyncedLayerAffectsTiming: 0
     m_Controller: {fileID: 9100000}
---- !u!1101 &8329263430401676137
+--- !u!1101 &3787952551084089007
 AnimatorStateTransition:
   m_ObjectHideFlags: 1
   m_CorrespondingSourceObject: {fileID: 0}
@@ -118,7 +118,7 @@ AnimatorStateTransition:
     m_ConditionEvent: Death
     m_EventTreshold: 0
   m_DstStateMachine: {fileID: 0}
-  m_DstState: {fileID: -3179059718551962870}
+  m_DstState: {fileID: -1350754652328435164}
   m_Solo: 0
   m_Mute: 0
   m_IsExit: 0
