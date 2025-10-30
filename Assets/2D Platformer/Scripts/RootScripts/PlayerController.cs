@@ -1,7 +1,4 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-
 namespace Platformer
 {
 	public class PlayerController : MonoBehaviour
@@ -12,6 +9,7 @@ namespace Platformer
 
 		private float moveInput;
 		private int jumpCounter = 0;
+		private int attackCounter = 0;
 
 		private bool facingRight = false;
 
@@ -28,6 +26,7 @@ namespace Platformer
 		private HpPlayer hp;
 		private const float KNOCKBACK_FORCE = 150;
 		private const int MAX_JUMPS = 2;
+		private const int MAX_ATTACKS = 3;
 		public float groundedRadius = 1;
 
 		void Start()
@@ -50,10 +49,20 @@ namespace Platformer
 		void Update()
 		{
 			CheckGround();
+
+			if (Input.GetMouseButtonDown(0))
+			{
+				float force = facingRight ? 250 : -250;
+				rigidbody.linearVelocity = Vector2.zero;
+				rigidbody.AddForce(new Vector2(force, 0));
+				Attack();
+			}
+
 			if (blockInput)
 			{
 				return;
 			}
+
 
 			moveInput = Input.GetAxisRaw("Horizontal");
 			Vector3 direction = transform.right * moveInput;
@@ -61,10 +70,7 @@ namespace Platformer
 
 			if (isGrounded)
 			{
-				bool moving = Mathf.Abs(moveInput) > 0 ? true : false;
-				animator?.SetBool("Moving", moving);
-				animator?.SetBool("Jump", false);
-
+				animator?.SetFloat("MoveSpeed", Mathf.Abs(moveInput));
 			}
 
 			if (Input.GetKeyDown(KeyCode.Space))
@@ -79,7 +85,7 @@ namespace Platformer
 				jumpCounter = Mathf.Clamp(jumpCounter, 0, MAX_JUMPS - 1);
 				rigidbody.linearVelocity = Vector2.zero;
 				rigidbody.AddForce(transform.up * jumpForce, ForceMode2D.Impulse);
-				animator?.SetBool("Jump", true);
+				animator?.SetTrigger("Jump");
 			}
 
 			if (!facingRight && moveInput > 0)
@@ -90,6 +96,7 @@ namespace Platformer
 			{
 				Flip();
 			}
+
 		}
 
 		public void BlockInput(bool value)
@@ -100,7 +107,20 @@ namespace Platformer
 		public void Death()
 		{
 			BlockInput(true);
-			animator?.SetBool("Death", true);
+			animator?.SetTrigger("Death");
+		}
+
+		public void Attack()
+		{
+			animator?.SetTrigger("Attack");
+			animator?.SetInteger("AttackCounter", attackCounter);
+
+			attackCounter++;
+			if(attackCounter > MAX_ATTACKS-1)
+			{
+				attackCounter = 0;
+			}
+
 		}
 
 		private void Flip()
@@ -115,6 +135,8 @@ namespace Platformer
 		{
 			Collider2D[] colliders = Physics2D.OverlapCircleAll(groundCheck.transform.position, groundedRadius, groundMask);
 			isGrounded = colliders.Length > 0;
+
+			animator.SetBool("Airborne", !isGrounded);
 
 			if (isGrounded)
 			{

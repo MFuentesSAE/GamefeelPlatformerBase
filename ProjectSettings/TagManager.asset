@@ -19,7 +19,7 @@ TagManager:
   - Inmune
   - Enemy
   - Static
-  - Box
+  - HitBox
   - 
   - 
   - 
