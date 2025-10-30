@@ -68,10 +68,14 @@ namespace Platformer
 			Vector3 direction = transform.right * moveInput;
 			transform.position = Vector3.MoveTowards(transform.position, transform.position + direction, movingSpeed * Time.deltaTime);
 
-			if (isGrounded)
-			{
-				animator?.SetFloat("MoveSpeed", Mathf.Abs(moveInput));
-			}
+
+			animator?.SetFloat("MoveSpeed", Mathf.Abs(moveInput));
+
+			//if (isGrounded)
+			//{
+			//	animator?.SetFloat("MoveSpeed", Mathf.Abs(moveInput));
+			//	Debug.Log("AbsMoveInputIs: " +Mathf.Abs(moveInput) +", real one is " +moveInput);
+			//}
 
 			if (Input.GetKeyDown(KeyCode.Space))
 			{

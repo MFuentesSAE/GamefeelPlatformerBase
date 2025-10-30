@@ -11,6 +11,6 @@ public class Hitbox : MonoBehaviour
 	private void OnTriggerEnter2D(Collider2D collision)
 	{
 		HpEnemy hp = collision.GetComponent<HpEnemy>();
-		hp.RemoveHp(hp.maxHp);
+		hp?.RemoveHp(hp.maxHp);
 	}
 }
