@@ -21,6 +21,7 @@ public class HpPlayer : HpBase
 	{
 		base.RemoveHp(amount);
 		onModifyHpEvent?.Invoke(currentHp);
+		CameraManager.instance?.ShakeCamera();
 		if(currentHp <= 0)
 		{
 			playerController?.Death();
