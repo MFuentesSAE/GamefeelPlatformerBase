@@ -24,6 +24,7 @@ public class HpPlayer : HpBase
 		CameraManager.instance?.ShakeCamera();
 		if(currentHp <= 0)
 		{
+			TimeManager.instance?.FreezeFrame(0.25f, 1f);
 			playerController?.Death();
 			gameManager?.GameOver();
 			onDieEvent?.Invoke();
