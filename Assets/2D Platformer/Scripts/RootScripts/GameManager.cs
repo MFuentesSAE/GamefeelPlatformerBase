@@ -17,6 +17,7 @@ namespace Platformer
         private PlayerController player;
         public TextMeshProUGUI coinText;
         public UnityEvent onGameWinEvents;
+        public SoundList soundList;
 
         public static GameManager instance;
 
@@ -27,6 +28,7 @@ namespace Platformer
 
 		void Start()
         {
+            soundList.SoundFadeIn("Theme", 3, 1);
             player = playerGameObject.GetComponent<PlayerController>();
             coinsCounter = 0;
 			coinText.text = coinsCounter.ToString();

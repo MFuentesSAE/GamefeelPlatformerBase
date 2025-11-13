@@ -17,6 +17,7 @@ namespace Platformer
 		public bool isGrounded;
 		public Transform groundCheck;
 		public LayerMask groundMask;
+		public SoundList soundList;
 
 		private Rigidbody2D rigidbody;
 		private Animator animator;
@@ -90,6 +91,7 @@ namespace Platformer
 				rigidbody.linearVelocity = Vector2.zero;
 				rigidbody.AddForce(transform.up * jumpForce, ForceMode2D.Impulse);
 				animator?.SetTrigger("Jump");
+				soundList.PlaySound("Jump");
 			}
 
 			if (!facingRight && moveInput > 0)
@@ -118,6 +120,7 @@ namespace Platformer
 		{
 			animator?.SetTrigger("Attack");
 			animator?.SetInteger("AttackCounter", attackCounter);
+			soundList.PlaySoundRandomPitch("Attack");
 
 			attackCounter++;
 			if(attackCounter > MAX_ATTACKS-1)
@@ -177,6 +180,7 @@ namespace Platformer
 			if (other.gameObject.tag == "Coin")
 			{
 				gameManager?.AddCoins(1);
+				soundList.PlaySound("Coin");
 				other.gameObject.SetActive(false);
 			}
 		}
