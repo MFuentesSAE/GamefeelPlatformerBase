@@ -17,6 +17,11 @@ public class HpBase : MonoBehaviour
 
     public virtual void RemoveHp(int amount)
     {
+        if (!IsAlive())
+        {
+            return;
+        }
+
         currentHp -= amount;
         currentHp = Mathf.Clamp(currentHp, 0, maxHp);
     }
