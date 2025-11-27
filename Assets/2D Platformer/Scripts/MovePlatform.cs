@@ -19,6 +19,7 @@ public class MovePlatform : MonoBehaviour
     {
         if(collison.gameObject.CompareTag("Player"))
         {
+            collison.transform.SetParent(transform, true);
             platfromTween.Pause();
         }
     }
@@ -27,7 +28,8 @@ public class MovePlatform : MonoBehaviour
     {
         if(collison.gameObject.CompareTag("Player"))
         {
-            platfromTween.Play();
+			collison.transform.SetParent(null);
+			platfromTween.Play();
         }
     }
 
